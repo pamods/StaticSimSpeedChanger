@@ -15,7 +15,7 @@ import org.json.JSONObject;
 public class StaticSimSpeedChanger
 {
     static int speedup_factor = 3;//1.0/(0.8^speedup_factor)
-    static String program_version="0.1dev";
+    static String program_version="0.2dev";
     static String dir = "C:\\Games\\Uber Entertainment\\Planetary Annihilation Launcher\\Planetary Annihilation\\stable";
         
     static double mult = 1.0d;
@@ -115,8 +115,8 @@ public class StaticSimSpeedChanger
         File unit_dir = new File(dir+"\\media\\pa");
         ArrayList<File> recursive_listing = new ArrayList<>();
         ArrayList<File> json = new ArrayList<>();
-        String[] fields = {"navigation.move_speed", "navigation.acceleration", "navigation.brake", "navigation.turn_speed", "pitch_rate", "yaw_rate", "production.metal", "production.energy", "rate_of_fire", "initial_velocity", "max_velocity", "lifetime", "construction_demand.energy", "construction_demand.metal", "ammo_demand", "atrophy_cool_down", "atrophy_rate", "factory_cooldown_time", "navigation.hover_time", "navigation.wobble_speed", "physics.air_friction", "physics.gravity_scalar"};
-        boolean[] increase = {                true,                      true,               true,                    true,         true,       true,               true,                true,           true,               true,           true,      false,                         true,                        true,          true,               false,           true,                   false,                   false,                      true,                  false,                     true};
+        String[] fields = {"navigation.move_speed", "navigation.acceleration", "navigation.brake", "navigation.turn_speed", "pitch_rate", "yaw_rate", "rate_of_fire", "initial_velocity", "max_velocity", "lifetime", "ammo_demand", "atrophy_cool_down", "atrophy_rate", "factory_cooldown_time", "navigation.hover_time", "navigation.wobble_speed", "physics.air_friction", "physics.gravity_scalar", "build_metal_cost", "storage.energy", "storage.metal"};//, "production.metal", "production.energy", "construction_demand.energy", "construction_demand.metal"
+        boolean[] increase = {                true,                      true,               true,                    true,         true,       true,           true,               true,           true,      false,          true,               false,           true,                   false,                   false,                      true,                  false,                     true,              false,            false,           false};//,               true,                true,                         true,                        true
         int[] counts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         DecimalFormat df = new DecimalFormat();
         
@@ -267,7 +267,7 @@ public class StaticSimSpeedChanger
         Date d = new Date();
         //create modinfo.json
         StringBuilder modinfo = new StringBuilder();
-        modinfo.append("{\"context\":\"server\",\"identifier\":\"com.pa.trialq.tStaticSimSpeedChanger.").append(df.format(10.0d/mult)).append("\",\"display_name\":\"Static Sim Speed, ");
+        modinfo.append("{\"context\":\"server\",\"identifier\":\"com.pa.trialq.tStaticSimSpeedChanger.").append(df.format(10.0d/mult)).append("\",\"forum\":\"https://forums.uberent.com/threads/65185/\",\"display_name\":\"Static Sim Speed, ");
         modinfo.append(df.format(10.0d/mult));
         modinfo.append(" FPS\",\"description\":\"Changes unit stats, so that the game plays the same at a lower sim speed. For use with local servers where sim speed can be changed (see forum).\",\"author\":\"trialq\",\"version\":\"");
         modinfo.append(program_version).append("-").append(version).append("\",\"build\":\"").append(version).append("\",\"date\":\"");
