@@ -15,7 +15,7 @@ import org.json.JSONObject;
 public class StaticSimSpeedChanger
 {
     static int speedup_factor = 3;//1.0/(0.8^speedup_factor)
-    static String program_version="0.2dev";
+    static String program_version="0.3dev";
     static String dir = "C:\\Games\\Uber Entertainment\\Planetary Annihilation Launcher\\Planetary Annihilation\\stable";
         
     static double mult = 1.0d;
@@ -111,6 +111,11 @@ public class StaticSimSpeedChanger
 
     public static void main(String[] args) throws FileNotFoundException, IOException
     {
+        if(!parse_ops(args))
+        {
+            return;
+        }
+        
         String media = dir+"\\media";
         File unit_dir = new File(dir+"\\media\\pa");
         ArrayList<File> recursive_listing = new ArrayList<>();
@@ -122,11 +127,6 @@ public class StaticSimSpeedChanger
         
         int total_files_altered=0;
         int total_fields_altered = 0;
-        
-        if(!parse_ops(args))
-        {
-            return;
-        }
         
         BufferedReader version_reader = new BufferedReader(new FileReader(new File(dir+"\\version.txt")));
         String version = version_reader.readLine();
